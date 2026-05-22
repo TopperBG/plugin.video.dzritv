@@ -51,3 +51,16 @@ def test_parse_matches_by_sport():
 def test_resolve_stream_pattern():
     page = "var videoSrc = 'https://example.test/live/playlist.m3u8?token=1';"
     assert dzritv.resolve_stream_from_page(page) == "https://example.test/live/playlist.m3u8?token=1"
+
+
+def test_kodi_header_suffix_is_urlencoded():
+    url = "https://example.test/live/playlist.m3u8?token=1"
+    headers = {
+        "User-Agent": "Mozilla/5.0 Test",
+        "Referer": "https://dzritv.com/match/example",
+    }
+
+    assert dzritv.with_kodi_headers(url, headers) == (
+        "https://example.test/live/playlist.m3u8?token=1|"
+        "User-Agent=Mozilla%2F5.0+Test&Referer=https%3A%2F%2Fdzritv.com%2Fmatch%2Fexample"
+    )

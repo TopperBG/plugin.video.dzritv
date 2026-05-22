@@ -2,7 +2,7 @@ import html
 import re
 from dataclasses import dataclass
 from typing import Dict, Iterable, List, Optional
-from urllib.parse import quote, urljoin, urlparse
+from urllib.parse import urlencode, urljoin, urlparse
 from urllib.request import Request, urlopen
 
 
@@ -173,5 +173,5 @@ def playback_headers(match_url: str) -> Dict[str, str]:
 
 
 def with_kodi_headers(url: str, headers: Dict[str, str]) -> str:
-    header_blob = "&".join(f"{quote(key)}={quote(value)}" for key, value in headers.items())
+    header_blob = urlencode(headers)
     return f"{url}|{header_blob}" if header_blob else url
