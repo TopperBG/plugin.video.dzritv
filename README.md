@@ -17,7 +17,7 @@ Zip the `plugin.video.dzritv` directory and install it in Kodi through:
 Example:
 
 ```bash
-zip -r plugin.video.dzritv-0.2.0.zip plugin.video.dzritv -x '*/tests/*'
+zip -r plugin.video.dzritv-0.2.1.zip plugin.video.dzritv -x '*/tests/*'
 ```
 
 ## Development Check
